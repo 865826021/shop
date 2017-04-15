@@ -1,0 +1,60 @@
+
+<?php $__env->startSection('content'); ?>
+    <div class="wraper container-fluid">
+        <div class="page-title">
+            <h3 class="title">类别管理</h3>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">类别列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>name</th>
+                                            <th>title</th>
+                                            <th>keywords</th>
+                                            <th>order</th>
+                                            <th>pid</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <?php foreach($data as $v): ?>
+                                        <tr>
+                                            <td><?php echo e($v->cate_id); ?></td>
+                                            <td><?php echo e($v->cate_name); ?></td>
+                                            <td><?php echo e($v->cate_title); ?></td>
+                                            <td><?php echo e($v->cate_keywords); ?></td>
+                                            <td><?php echo e($v->cate_order); ?></td>
+                                            <td><?php echo e($v->cate_pid); ?></td>
+                                            <td><button onclick="window.location='/category/<?php echo e($v->cate_id); ?>/edit'" class="btn btn-primary btn-xs">修改</button> &nbsp; &nbsp;
+                                                <button onclick="window.location='<?php echo e(url('/category/destroy')); ?>/<?php echo e($v->cate_id); ?>'" class="btn btn-danger btn-xs del">删除</button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End row -->
+
+
+
+    </div>
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,58 @@
+<?php $__env->startSection('content'); ?>
+    <script type="text/javascript" src="/admin/Scripts/jquery-1.js"></script>
+    <script type="text/javascript" src="/admin/Scripts/school.js"></script>
+    <script type="text/javascript" src="/admin/Scripts/district.js"></script>
+
+    <div class="wraper container-fluid">
+        <div class="page-title">
+            <h3 class="title">学籍管理员管理</h3>
+        </div>
+
+        <div class="row">
+
+            <!-- Horizontal form -->
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">学籍管理员编辑</h3></div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="/eduuser/<?php echo e($data['id']); ?>" method="post" role="form">
+                            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                            <input type="hidden" name="id" value="<?php echo e($data['id']); ?>">
+                            <input type="hidden" name="_method" value="PUT">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">用户名：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="username" name="username" value="<?php if($data['username']): ?><?php echo e($data['username']); ?><?php else: ?>"<?php endif; ?>" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">密码：</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                                    <input type="hidden" class="form-control" id="base_password" name="base_password" value="<?php if($data['password']): ?><?php echo e($data['password']); ?><?php else: ?>"<?php endif; ?>">
+                                    <?php if($errors->has('password')): ?>
+                                        <p style="color: red"><?php echo e($errors->first('password')); ?></p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword4" class="col-sm-3 control-label">昵称：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="nickname" name="nickname" value="<?php if(isset($data['nickname'])): ?><?php echo e($data['nickname']); ?><?php else: ?>"<?php endif; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group m-b-0">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-info" onClick="return sub()">修改</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div> <!-- panel-body -->
+                </div> <!-- panel -->
+            </div> <!-- col -->
+
+        </div> <!-- End row -->
+
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

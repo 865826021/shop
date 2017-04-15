@@ -1,0 +1,47 @@
+<?php $__env->startSection('content'); ?>
+<!--Main Content Start -->
+    <div class="wraper container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">班期成员搜索</h3></div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" action="/student/do-search-class">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">班期序列号</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="class_name" class="form-control" placeholder="格式：A00010010128">
+                                    <span class="help-block">
+                                        <small>第1位：A线上/B线下/C兄弟会<br>第2~5位：校区代号<br>第6~8位：学科<br>第9～12位：班期序列号</small>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-b-0">
+                                <div class="col-sm-offset-4 col-sm-3">
+                                    <input type="submit" value="搜索" class="btn btn-info">
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-sm-2 control-label">可能以后会用到下拉菜单的显示</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div> -->
+
+                        </form>
+                    </div> <!-- panel-body -->
+                </div> <!-- panel -->
+            </div> <!-- col -->
+        </div> <!-- End row -->
+    </div>
+<!-- Main Content Ends -->
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('student.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,61 @@
+
+<?php $__env->startSection('content'); ?>
+    <script type="text/javascript" src="<?php echo e(URL::asset('/admin')); ?>/Scripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        $(function (){
+            $('input[level=1]').click(function (){
+                alert(aaaa);
+                var inputs = $(this).parents('.app').find('input');
+                $(this).attr('checked') ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+            });
+        });
+    </script>
+    <div class="wraper container-fluid">
+        <div class="page-title">
+            <h3 class="title">配置权限</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">权限列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+                                    <?php if(isset($NodeList) && is_array($NodeList)): ?>
+                                        <?php foreach($NodeList as $app): ?>
+                                            <div class="app">
+                                            <h3><?php echo e($app['title']); ?>
+
+                                                <input type="checkbox" name="access[]" value="<?php echo e($app['id']); ?>_1" level="1"/>
+                                            </h3>
+                                            <?php foreach($app['child'] as $action): ?>
+                                                <dl>
+                                                    <dt><?php echo e($action['title']); ?>
+
+                                                        <input type="checkbox" name="access[]" value="<?php echo e($action['id']); ?>_2" level="2"/>
+                                                    </dt>
+                                                </dl>
+                                                <?php foreach($action['child'] as $mothed): ?>
+                                                    <a><?php echo e($mothed['title']); ?><input type="checkbox" name="access[]" value="<?php echo e($mothed['id']); ?>_3" level="3"/></a>
+                                                <?php endforeach; ?>
+                                            <?php endforeach; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-xs-offset-4"></div>
+                </div>
+            </div>
+        </div> <!-- End row -->
+
+
+    </div>
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

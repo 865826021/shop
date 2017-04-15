@@ -1,0 +1,93 @@
+<?php $__env->startSection('content'); ?>
+    <div class="wraper container-fluid">
+
+        <!-- Inline Form -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">用户搜索</h3></div>
+                    <div class="panel-body">
+                        <form action="/search/user" method="get">
+                            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                            <div class="col-sm-3 ">
+                                <select name="type" class="form-control cptype text-center">
+                                    <option value="1">真实姓名</option>
+                                    <option value="2">手机号</option>
+                                    <option value="3">邮  箱</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-3 col-sm-offset">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button type="submit" class="btn btn-effect-ripple btn-primary">搜索</button>
+                                </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div> <!-- panel-body -->
+                </div> <!-- panel -->
+            </div> <!-- col -->
+        </div> <!-- End row -->
+
+        <div class="page-title">
+            <h3 class="title">用户管理</h3>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用户列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>guid</th>
+                                            <th>email</th>
+                                            <th>tel</th>
+                                            <th>Username</th>
+                                            <th>sex</th>
+                                            <th>status</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach($allUser as $all): ?>
+                                        <tr>
+                                            <td><?php echo e($all->id); ?></td>
+                                            <td><?php echo e($all->guid); ?></td>
+                                            <td><?php echo e($all->email); ?></td>
+                                            <td><?php echo e($all->tel); ?></td>
+                                            <td><?php echo e($all->real_name); ?></td>
+                                            <td><?php if($all->sex==1): ?> 男 <?php elseif($all->sex==2): ?> 女 <?php endif; ?></td>
+                                            <td><?php echo e($all->status); ?></td>
+                                            <td><button onclick="window.location='/user/<?php echo e($all->guid); ?>/edit'" class="btn btn-primary btn-xs">修改</button> &nbsp; &nbsp;
+                                                <button onclick="window.location='<?php echo e(url('/user/del')); ?>/<?php echo e($all->guid); ?>'" class="btn btn-danger btn-xs del">删除</button>
+                                                <button onclick="window.location='<?php echo e(url('/relcertificate')); ?>/<?php echo e($all->guid); ?>'" class="btn btn-primary btn-xs ">添加证书</button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-xs-offset-4"><?php echo $pageView; ?></div>
+            </div>
+        </div> <!-- End row -->
+
+
+
+    </div>
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

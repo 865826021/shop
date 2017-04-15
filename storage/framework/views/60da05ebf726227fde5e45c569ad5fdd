@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>兄弟连IT教育认证查询</title>
+	<link rel="stylesheet" href="<?php echo e(asset('/home/Css/reset.css')); ?>" />
+	<link rel="stylesheet" href="<?php echo e(asset('/home/Css/ydmaAccount/ydmaAccount.css')); ?>" />
+	<script src="<?php echo e(asset('/home/Scripts/jquery-2.1.4.js')); ?>"></script>
+</head>
+<body>
+
+	<!-- 外部容器开始 -->
+	<div id="wrap">
+
+		<!-- logo区域开始 -->
+		<div class="logo">
+			<img src="<?php echo e(asset('/home/Images/logo.jpg')); ?>" style="margin-top:40px;" alt="兄弟连">
+		</div>
+		<div class="form-div">
+		    <form id="reg-form" action="/ydmaaccount" method="post">
+				<?php echo e(csrf_field()); ?>
+
+		        <table>
+					<tr>
+						<td colspan="2" id="tips" style="visibility:hidden;"> * 密码和账号不能为空</td>
+					</tr>
+		            <tr>
+		                <td>用户名 </td>
+		                <td><input name="username" type="text" id="username" placeholder="请输入猿代码账号">
+		                </td>
+		            </tr>
+		            <tr>
+		                <td>密码 </td>
+		                <td><input name="password" type="password" id="password"></td>
+		            </tr>
+		        </table>
+				<div class="button-position">
+					<div class="buttons">
+						<input value="获取二维码" type="submit" id="submit">
+						<input type="button" name="name" value="返回" id="back">
+			        </div>
+				</div>
+
+		        <br class="clear">
+		    </form>
+		</div>
+	</div>
+
+	<!-- 外部容器结束 -->
+</body>
+<script type="text/javascript">
+	$('#submit').on('click',function(){
+		var username = $("#username").val();
+		var password = $("#password").val();
+
+		if($.trim(username) == "" || $.trim(password) == ""){
+			$("#tips").css('visibility','visible');
+			return false;
+		}
+	});
+	$("#back").on('click',function(){
+		window.location.href = "/";
+	});
+</script>
+</html>

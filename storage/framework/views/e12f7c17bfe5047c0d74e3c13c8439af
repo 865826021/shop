@@ -1,0 +1,9 @@
+
+<?php $__env->startSection('content'); ?>
+    <div class="page-title">
+        <h3 class="title">Welcome !</h3>
+    </div>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

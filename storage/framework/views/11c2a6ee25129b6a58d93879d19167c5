@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="zh-CN" class="ie6 ielt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="zh-CN" class="ie7 ielt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="zh-CN" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="zh-CN"><!--<![endif]--><head>
+	<meta charset="utf-8">
+    <title><?php echo e($article->art_title); ?></title>
+    <meta name="keywords" content="<?php echo e($article->art_tag); ?>">
+    <meta name="description" content="<?php echo e($article->art_description); ?>">
+	<meta http-equiv="Cache-Control" content="no-transform">
+	<link rel="stylesheet" type="text/css" href="/home/css/cmstop-article.css">
+	<link rel="stylesheet" type="text/css" href="/home/css/cmstop-comment-mode.css">
+	<link rel="stylesheet" type="text/css" href="/home/css/cmstop-right-common.css">
+	<!--[if lt IE 9 ]>
+	<![endif]-->
+	<script type="text/javascript" src="/home/js/jquery_002.js"></script>
+	<script type="text/javascript" src="/home/js/jquery.js"></script>
+	<script type="text/javascript" src="/home/js/cmstop-common.js"></script>
+
+		<!-- 本页面私有 -->
+    	<link rel="stylesheet" type="text/css" href="/home/css/style.css">
+    	<script type="text/javascript" src="/home/js/common.js"></script>
+	</head>
+
+<body>
+
+	<!--网站公共头部-->
+	<?php echo $__env->make('home.public.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<!--@网站公共头部-->
+
+	<!-- 预处理代码区 -->
+<div class="main newslist">
+	<!--左侧-->
+	<div class="listl">
+    <div class="inner">
+		<div class="listview2">观点</div>
+		<div class="listlcon" style="margin-bottom:30px;">
+			<div class="listltitle">
+				<h3><?php echo e($article->art_title); ?></h3>
+				<p>
+					<a class="tfontsize" href="javascript:;">字号+</a>
+					<span class="spanimg1">作者：<?php echo e($article->art_editor); ?> </span> <span class="spanimg3"><?php echo e(date("Y-m-d h:i:s", $article->art_time)); ?></span>
+				</p>
+			</div>
+			<div>
+              
+                  <div class="say"><p><?php echo e(str_limit($article->art_description, $limit = 160, $end = '...')); ?></p></div>
+                  
+            </div>		</div>
+
+		<div class="article-content fontSizeSmall BSHARE_POP">
+			<?php echo $article->art_content; ?>
+
+		</div>
+	
+		<div class="tag">
+			<div class="tagtitle"></div>
+						<a href="http://kanchai.dededemo.com/tags.php?/%D0%A1%C3%D7/">小米</a><a href="http://kanchai.dededemo.com/tags.php?/%C6%BB%B9%FB/">苹果</a><a href="http://kanchai.dededemo.com/tags.php?/%C9%BD%D5%AF/">山寨</a>
+						<div class="share">
+				<a href="javascript:;" class="sharea1">分享到新浪微博</a>
+				<a href="javascript:;" class="sharea2">分享到腾讯微博</a>
+				<a title="砍柴网" rel="sidebar" href="http://kanchai.dededemo.com/" class="sharea3">收藏</a>
+			</div>
+		</div>
+		<div class="avow">
+			<div class="avowtitle"></div>
+			<!-- 声明 -->
+			<p>1.本站遵循行业规范，任何转载的稿件都会明确标注作者和来源；2.本站的原创文章，请转载时务必注明文章作者和来源，不尊重原创的行为我们将追究责任；3.作者投稿可能会经我们编辑修改或补充。</p>
+			<!-- @声明 -->
+		</div>
+	
+		<div class="correlation">
+			<div class="com-title"><span><img src="/home/images/symbol-23.png" alt="">相关文章</span></div>
+			<ul class="ulfix">
+            <li>
+					<div class="corimg">
+						<a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/25.html" class="title" target="_blank"><img src="/home/images/9.jpg" alt="移动互联网只是工具，风口上的猪只是传说" width="175" height="115"></a>
+					</div>
+					<p>移动互联网只是工具，风口上的猪只是传说</p>
+					<p>2015-02-06 22:16</p>
+					</li>
+
+									
+							</ul>
+		</div>
+		<!-- 评论 -->
+		<div class="comment">
+		<div class="com-title"><span id="cm"><img src="/home/images/symbol-23.png" alt="">网友点评</span></div>
+
+<div class="_DEDECY" style=""><a id="changyan_area"></a><div id="SOHUCS" sid="24"><div node-type="is-icp" style="width:100%;text-align:center;font-size:14px;line-height:20px;background:#fdeced;color:#f0979b;font-family:'Microsoft YaHei';margin:10px 0;padding: 10px 8px;">网站未在畅言补全备案信息，请在<a href="http://changyan.kuaizhan.com/" target="_blank">畅言后台</a>-系统设置-通用设置-ICP备案号中填入您的网站备案号，并等待审核通过即可。</div></div></div><script>(function(){var doc = document,s = doc.createElement('script'),h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;s.type = 'text/javascript';s.charset = 'utf-8';s.src='http://assets.changyan.sohu.com/upload/changyan.js?conf=prod_177c38cac7b6e76fbd45e75ca332ed64&appid=cyrG5qLdb';h.insertBefore(s,h.firstChild);window.SCS_NO_IFRAME = true;})()</script>
+               
+		</div>
+		<!-- @评论 -->
+        </div>
+	</div>
+
+	<!--右侧-->
+	<div class="listr">
+		<?php /*<div class="rserach">*/ ?>
+        <?php /*<form name="formsearch" action="/plus/search.php">*/ ?>
+        <?php /*<input name="kwtype" value="0" type="hidden">*/ ?>
+				<?php /*<input name="q" class="text-rserach" type="text"> */ ?>
+	    <?php /*<input class="btn-rserach" value="" type="submit">*/ ?>
+	<?php /**/ ?>
+        <?php /*</form>*/ ?>
+	    <?php /*</div>*/ ?>
+				<div class="adimg">
+			<!-- 广告位_01 -->
+			<a href="" title="" target="_blank"><img src="/home/images/img14.jpg" alt=""></a>
+
+			<!-- @广告位_01 -->
+		</div>
+		<!--精彩导读-->
+		<div class="read read2">
+			<div class="com-title"><span><img src="/home/images/symbol-3.png" alt="" style="margin-bottom: 1px;">精彩导读</span></div>
+                  <div class="readbox">
+				<div class="readimg">
+					<a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/29.html" target="_blank" title="潘石屹拜访30多家互联网公司的背后――传统企业转型刻不容缓">
+						<img src="/home/images/13.jpg" alt="潘石屹拜访30多家互联网公司的背后――传统企业转型刻不容缓" width="90" height="59">
+					</a></div>
+				<p><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/29.html" target="_blank" title="潘石屹拜访30多家互联网公司的背后――传统企业转型刻不容缓">潘石屹拜访30多家互联网公司的背后――传统企</a></p>
+				<div class="floatfix"></div>
+			</div>
+<div class="readbox">
+				<div class="readimg">
+					<a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/28.html" target="_blank" title="裁判员和运动员的双重角色，腾讯在开放与封闭中来回纠结">
+						<img src="/home/images/12.jpg" alt="裁判员和运动员的双重角色，腾讯在开放与封闭中来回纠结" width="90" height="59">
+					</a></div>
+				<p><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/28.html" target="_blank" title="裁判员和运动员的双重角色，腾讯在开放与封闭中来回纠结">裁判员和运动员的双重角色，腾讯在开放与封闭</a></p>
+				<div class="floatfix"></div>
+			</div>
+<div class="readbox">
+				<div class="readimg">
+					<a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/27.html" target="_blank" title="连接一切的背后是控制一切，微信卡在了自我构筑的高墙上">
+						<img src="/home/images/11.jpg" alt="连接一切的背后是控制一切，微信卡在了自我构筑的高墙上" width="90" height="59">
+					</a></div>
+				<p><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/27.html" target="_blank" title="连接一切的背后是控制一切，微信卡在了自我构筑的高墙上">连接一切的背后是控制一切，微信卡在了自我构</a></p>
+				<div class="floatfix"></div>
+			</div>
+<div class="readbox">
+				<div class="readimg">
+					<a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/26.html" target="_blank" title="TFBOYS效应，三个十几岁的小鲜肉为什么会红？">
+						<img src="/home/images/10.jpg" alt="TFBOYS效应，三个十几岁的小鲜肉为什么会红？" width="90" height="59">
+					</a></div>
+				<p><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/26.html" target="_blank" title="TFBOYS效应，三个十几岁的小鲜肉为什么会红？">TFBOYS效应，三个十几岁的小鲜肉为什么会红？</a></p>
+				<div class="floatfix"></div>
+			</div>
+<div class="readbox">
+				<div class="readimg">
+					<a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/25.html" target="_blank" title="移动互联网只是工具，风口上的猪只是传说">
+						<img src="/home/images/9.jpg" alt="移动互联网只是工具，风口上的猪只是传说" width="90" height="59">
+					</a></div>
+				<p><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/25.html" target="_blank" title="移动互联网只是工具，风口上的猪只是传说">移动互联网只是工具，风口上的猪只是传说</a></p>
+				<div class="floatfix"></div>
+			</div>
+
+
+					</div>
+		<div class="adimg3">
+			<!-- 广告位_02 -->
+			<a href="" title="" target="_blank"><img src="/home/images/img15.jpg" alt=""></a>
+			<!-- @广告位_02 -->
+		</div>
+		<div class="adimg2">
+			<!-- 广告位_03 -->
+			<a href="" title="" target="_blank"><img src="/home/images/img17.jpg" alt=""></a>
+			<!-- @广告位_03 -->
+		</div>
+		<!--科技快报-->
+		<div class="viewpoint hotlist">
+			<div class="com-title"><span><img src="/home/images/symbol-13.png" alt="">热门资讯</span></div>
+			<ul>
+                  <li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0120/24.html">模仿苹果？小米线下软肋永不会补</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/29.html">潘石屹拜访30多家互联网公司的背</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0207/203.html">红包成兵家必争之地，泛滥有隐忧</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/23.html">三连封杀令：暴露微信对外部社交</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/30.html">蜷缩在泡沫里的机器人，最后一次</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/25.html">移动互联网只是工具，风口上的猪</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0206/26.html">TFBOYS效应，三个十几岁的小鲜肉</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0207/204.html">算法推荐阅读的冷思考――自我选</a></li>
+<li><a href="http://kanchai.dededemo.com/a/view/opinion/2015/0207/201.html">“再造搜狐”空喊五年，张朝阳回</a></li>
+
+						</ul>
+		</div>
+		<div class="floatfix"></div>
+		<div class="follow">
+			<div class="com-title"><span><img src="/home/images/symbol-5.png" alt="">关注我们</span></div>
+			<div class="followcon followcon2">
+				<span>关注微信公众号，了解最新精彩内容</span>
+				<p class="">
+					<img src="/home/images/qr1.jpg" alt="">
+<img src="/home/images/qr2.jpg" alt="">
+				</p>
+			</div>
+		</div>
+	</div>	
+
+	<!--右侧返回顶部、二维码-->
+	<div class="mreturn">
+		<div id="code"></div>
+<div id="code_img" src="/dedemao/html/images/qr2.jpg"></div>
+<a id="gotop"></a> 
+
+	</div>
+	
+</div>
+
+	<!--网站公共页脚-->
+	<!-- Footer Start -->
+	<?php echo $__env->make('home.public.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<!-- Footer Ends -->
+
+
+	
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>兄弟连IT教育认证查询</title>
+	<link rel="stylesheet" href="<?php echo e(asset('/home/Css/reset.css')); ?>" />
+	<link rel="stylesheet" href="<?php echo e(asset('/home/Css/zs_search.css')); ?>" />
+	<style>
+
+	</style>
+</head>
+<body>
+
+	<!-- 外部容器开始 -->
+	<div id="wrap">
+
+		<!-- logo区域开始 -->
+		<div class="logo">
+			<img src="<?php echo e(asset('/home/Images/logo.jpg')); ?>" alt="兄弟连">
+			<h1>兄弟连IT教育认证查询</h1>
+		</div>
+		<!-- logo区域结束 -->
+		<div class="getCode">
+			<a href="/ydmaaccount" id="getQrcode">点击查看二维码</a>
+		</div>
+		<!-- 搜索区域开始 -->
+		<form onsubmit="return false;">
+			<div class="search">
+				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" id="token">
+				<input type="text"  placeholder="手机号码,身份证号码,证书号码" name="search" required="" value="" class="username text"  />
+				<a id="button" class="btn">查 询</a>
+			</div>
+		</form>
+		<!-- 搜索区域结束 -->
+		<div class="searchinfo" >
+			<div class="errorStyle" style="display:none"></div>
+			<ul style="margin-top:20px" class="ulMessage">
+
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- 外部容器结束 -->
+</body>
+<script src="<?php echo e(asset('/home/Scripts/jquery-2.1.4.js')); ?>"></script>
+<script src="<?php echo e(asset('/home/Scripts/zs_search.js')); ?>"></script>
+<script>
+	$('#button').click(function(){
+		var data = {
+			'_token': $('#token').val(),
+			'search': $('.username').val()
+		}
+		$.ajax({
+			type: 'POST',
+			url: "<?php echo e(url('/')); ?>",
+			data: data,
+			dataType: 'JSON',
+			success: function (d) {
+
+				if (d.status == 200) {
+
+					var content = '';
+					$.each(d.data, function (k, v) {
+							content += '<a href="/certificate/'+ v.guid+'?certificate='+ v.id +'">';
+							content += '<li>';
+							content += '<div class="msgwrap">';
+							content += '<div class="msgwrap-l">';
+							content += '<p>证</p>';
+							content += '<p>书</p>';
+							content += '</div>';
+							content += '<div class="msgwrap-r">';
+							content += '<p>姓名：' + v.real_name + '</p>';
+							content += '<p>类型：' + v.certificate + '</p>';
+							content += '<p>点击查看详情</p>';
+							content += '</div>';
+							content += '<div class="clear"></div>';
+							content += '</div>';
+							content += '</li>';
+							content += '</a>';
+					})
+					$('.ulMessage').html(content);
+					$('.ulMessage').show();
+					$('.errorStyle').hide();
+				}else{
+					$('.errorStyle').html(d.message);
+					$('.errorStyle').show();
+					$('.ulMessage').hide();
+				}
+			}
+		})
+		return false;
+	})
+</script>
+</html>

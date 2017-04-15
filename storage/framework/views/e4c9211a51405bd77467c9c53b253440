@@ -1,0 +1,478 @@
+<?php $__env->startSection('content'); ?>
+    <script type="text/javascript" src="/admin/Scripts/jquery-1.js"></script>
+    <script type="text/javascript" src="/admin/Scripts/school.js"></script>
+    <script type="text/javascript" src="/admin/Scripts/district.js"></script>
+
+    <div class="wraper container-fluid">
+        <div class="page-title">
+            <h3 class="title">用户管理</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用户编辑</h3>
+                    </div>
+
+                    <form action="/user/<?php echo e($data['guid']); ?>" method="post" class="form-horizontal">
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                        <input type="hidden" name="guid" value="<?php echo e($data['guid']); ?>">
+                        <input type="hidden" name="_method" value="PUT">
+                        <div class="box-body">
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">邮箱：</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="email" id="email" value="<?php if($data['email']): ?><?php echo e($data['email']); ?><?php else: ?>"<?php endif; ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">手机号：</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="tel" id="tel" value="<?php if($data['tel']): ?><?php echo e($data['tel']); ?><?php else: ?>"<?php endif; ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">姓名：</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"  name="real_name" id="name" value="<?php if($data['real_name']): ?><?php echo e($data['real_name']); ?><?php else: ?>"<?php endif; ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">来源：</label>
+                                <div class="col-sm-4">
+                                    <select name="source" id="source" class="form-control cptype">
+                                        <?php if(empty($data['source'])): ?>
+                                            <option value="0" selected>请选择</option>
+                                            <?php foreach($sources as $sou): ?>
+                                                <option value="<?php echo e($sou['id']); ?>"><?php echo e($sou['name']); ?></option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option value="0">请选择</option>
+                                            <?php foreach($sources as $sou): ?>
+                                                <option value="<?php echo e($sou['id']); ?>" <?php if($sou['name']==$data['source']): ?> selected <?php endif; ?>><?php echo e($sou['name']); ?></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="cptype">
+                                <label for="inputPassword3" class="col-sm-3 control-label">性别：</label>
+                                <div class="col-sm-4">
+                                    <select name="sex" id="sex" class="form-control cptype">
+                                        <option value="0" <?php if(empty($data['sex'])): ?> selected <?php endif; ?>>请选择</option>
+                                        <option value="1" <?php if($data['sex']==1): ?> selected <?php endif; ?>>男</option>
+                                        <option value="2" <?php if($data['sex']==2): ?> selected <?php endif; ?>>女</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">教育程度：</label>
+                                <div class="col-sm-4">
+                                    <select name="jiaoyu" id="jiaoyu" class="form-control cptype">
+                                        <?php if(!isset($data['education'])): ?>
+                                            <option value="0" selected>请选择</option>
+                                            <?php foreach($educations as $edu): ?>
+                                                <option value="<?php echo e($edu['id']); ?>"><?php echo e($edu['name']); ?></option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option value="0">请选择</option>
+                                            <?php foreach($educations as $edu): ?>
+                                            <option value="<?php echo e($edu['id']); ?>" <?php if($edu['name']==$data['education']): ?> selected <?php endif; ?>><?php echo e($edu['name']); ?></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="cptype">
+                                <label for="inputPassword3" class="col-sm-3 control-label">省份/大学：</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="province" id="province">
+                                    </select>
+
+                                    <select class="form-control" name="school" id="school">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="cptype">
+                                <label for="inputPassword3" class="col-sm-3 control-label">家庭住址：</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="City" id="City">
+                                        <option selected value="0">省份</option>
+                                    </select>
+                                    <select class="form-control" name="Area" id="Area">
+                                        <option selected value="0">市</option>
+                                    </select>
+                                    <select class="form-control" name="Street" id="Street">
+                                        <option selected value="0">区县</option>
+                                    </select>
+                                    <input type="text" class="form-control" name="detailed" id="detailed" value="<?php if(isset($data['address']['detailed'])): ?><?php echo e($data['address']['detailed']); ?><?php else: ?>"<?php endif; ?>" placeholder="详细地址">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">紧急联系人：</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"  name="jjlxr" id="jjlxr" value="<?php if(isset($data['urgent']['name'])): ?><?php echo e($data['urgent']['name']); ?><?php else: ?>"<?php endif; ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">与联系人关系：</label>
+                                <div class="col-sm-4">
+                                    <select name="lxrgx" id="lxrgx" class="form-control cptype">
+                                        <?php if(!isset($data['urgent']['relation'])): ?>
+                                            <option value="0" selected>请选择</option>
+                                            <?php foreach($relations as $rel): ?>
+                                                <option value="<?php echo e($rel['id']); ?>"><?php echo e($rel['name']); ?></option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option value="0">请选择</option>
+                                            <?php foreach($relations as $rel): ?>
+                                                <option value="<?php echo e($rel['id']); ?>" <?php if($rel['name']==$data['urgent']['relation']): ?> selected <?php endif; ?>><?php echo e($rel['name']); ?></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="hidden">
+                                <label for="inputPassword3" class="col-sm-3 control-label">联系人电话：</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"  name="lxrtel" id="lxrtel" value="<?php if(isset($data['urgent']['tel'])): ?><?php echo e($data['urgent']['tel']); ?><?php else: ?>"<?php endif; ?>">
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group" id="hidden">
+                            <button type="submit" class="btn btn-block btn-social btn-facebook btn-flat" onClick="return sub()">修改</button>
+                        </div>
+                        <div class="col-xs-12"><br/></div>
+                        <div class="form-group" id="hidden">
+                            <button type="reset" class="btn btn-block btn-social btn-google btn-flat col-lg-10">重置</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div> <!-- End row -->
+
+        <script type="text/javascript">
+            /**
+             *省份大学联动
+             */
+            $(function(){
+                //加载省份信息
+                //遍历结果，拼装下拉项
+                //alert(schoolList[0]);
+                var str = "";
+                <?php if(!isset($data['school']['id_provinces'])): ?>
+                    str+="<option selected>请选择省份</option>";
+                    for(var i=0;i<schoolList.length;i++){
+                        //alert(schoolList[i][i+1]);
+                        str +="<option cid='"+[i+1]+"' value='"+[i+1]+"'>";
+                        str +=schoolList[i][i+1];
+                        str +="</option>";
+                    }
+                    //添加下拉项中
+                    $("select[name='province']").append(str);
+                    var opt = "<option>请选择</option>";
+                    $("#school").empty();
+                    $("#school").append(opt);
+                <?php elseif(empty($data['school']['id_provinces'])): ?>
+                    str+="<option selected>请选择省份</option>";
+                    for(var i=0;i<schoolList.length;i++){
+                    //alert(schoolList[i][i+1]);
+                    str +="<option cid='"+[i+1]+"' value='"+[i+1]+"'>";
+                    str +=schoolList[i][i+1];
+                    str +="</option>";
+                    }
+                    //添加下拉项中
+                    $("select[name='province']").append(str);
+                    var opt = "<option>请选择</option>";
+                    $("#school").empty();
+                    $("#school").append(opt);
+                <?php else: ?>
+                    str+="<option >请选择省份</option>";
+                    for(var i=0;i<schoolList.length;i++){
+                        //alert(schoolList[i][i+1]);
+                        if((i+1)==<?php echo e($data['school']['id_provinces']); ?>){
+                            str +="<option cid='"+[i+1]+"' selected='selected' value='"+[i+1]+"'>";
+                            str +=schoolList[i][i+1];
+                            str +="</option>";
+                        }else{
+                            str +="<option cid='"+[i+1]+"' value='"+[i+1]+"'>";
+                            str +=schoolList[i][i+1];
+                            str +="</option>";
+                        }
+                    }
+                    //添加下拉项中
+                    $("select[name='province']").append(str);
+                    //遍历结果，拼装下拉项
+                    var pid=$("#province option:selected").attr('cid');
+                    var str = "";
+                    var len=schoolList[pid-1]['child'].length;
+                    for(var i=0;i<len;i++){
+                        if(schoolList[pid-1]['child'][i]['id']==<?php echo e($data['school']['id_school']); ?>){
+                            str +="<option cid='"+schoolList[pid-1]['child'][i]['id']+"' selected='selected' value='"+schoolList[pid-1]['child'][i]['id']+"'>";
+                            str +=schoolList[pid-1]['child'][i]['name'];
+                            str +="</option>";
+                        }else{
+                            str +="<option cid='"+schoolList[pid-1]['child'][i]['id']+"' value='"+schoolList[pid-1]['child'][i]['id']+"'>";
+                            str +=schoolList[pid-1]['child'][i]['name'];
+                            str +="</option>";
+                        }
+                    }
+                    //添加下拉项中
+                    $("select[name='school']").append(str);
+                <?php endif; ?>
+
+                // 省变化的时候自动加载大学
+                $("select[name='province']").change(function(){
+                    var pid=$("#province option:selected").attr('cid');
+                    //alert(pid);
+                    //alert(pid-1);
+                    //alert(schoolList[pid-1]['child'][0]['id']);
+                    //alert(getJsonLength(schoolList[pid-1]['child']));
+                    var opt = "<option>请选择</option>";
+                    $("#school").empty();
+                    $("#school").append(opt);
+
+                    //遍历结果，拼装下拉项
+                    var str = "";
+                    var len=schoolList[pid-1]['child'].length;
+                    for(var i=0;i<len;i++){
+                        str +="<option cid='"+schoolList[pid-1]['child'][i]['id']+"' value='"+schoolList[pid-1]['child'][i]['id']+"'>";
+                        str +=schoolList[pid-1]['child'][i]['name'];
+                        str +="</option>";
+
+                    }
+                    //添加下拉项中
+                    $("select[name='school']").append(str);
+
+                });
+
+            });
+            /**
+             *城市三级联动
+             */
+
+            //如果省份为空
+            <?php if(!isset($data['address']['id_province'])): ?>
+
+            function selfDo() {// 加载当前所有城市
+                $('#City :not([value="0"])').remove();  // 删除非默认选项的城市
+                $.each(province, function (index, item) {   // 遍历循环城市
+                    $('#City').append('<option value="' + index + '">' + item + '</option>');
+                });
+            }
+            selfDo();
+
+            $('#City').on('change', function () {   // 城市改变事件
+                var index = $(this).val();          // 获取当前选择的城市
+                $('#Area  :not([value="0"])').remove(); // 清空区县
+                if (index != '0') {                 // 排序选择第一个
+                    $.each(city[index], function (index, item) {    // 遍历城市
+                        $('#Area').append('<option value="' + index + '">' + item + '</option>');
+                    });
+                }
+                $('#Street :not([value="0"])').remove();            // 顺便清空街道
+            });
+
+            $('#Area').on('change', function () {
+                var index = $(this).val();                  // 获取当前选择的区县
+                $('#Street :not([value="0"])').remove();    // 清空街道
+                if (index != '0' && aa[index] != '' && aa[index] != undefined) {    // 筛选
+                    $.each(aa[index], function (index, item) {                      // 遍历所有街道
+                        $('#Street').append('<option value="' + index + '">' + item + '</option>');
+                    });
+                } else if (city[$('#City').val()][index] != undefined) {            // 如果区县下没有街道, 让街道显示区县名称
+                    $('#Street').append('<option value="-1">' + city[$('#City').val()][index] + '</option>');
+                }
+
+            });
+
+            <?php else: ?>
+
+            function selfDo() {// 加载当前所有城市
+                $('#City :not([value="0"])').remove();  // 删除非默认选项的城市
+                $.each(province, function (index, item) {   // 遍历循环城市
+                    <?php if(!isset($data['address']['id_province'])): ?>
+                        $('#City').append('<option value="' + index + '">' + item + '</option>');
+                    <?php else: ?>
+                        if(index==<?php echo e($data['address']['id_province']); ?>){
+                            $('#City').append('<option selected="selected" value="' + index + '">' + item + '</option>');
+                        }
+                        else{
+                            $('#City').append('<option value="' + index + '">' + item + '</option>');
+                        }
+                    <?php endif; ?>
+                });
+            }
+            selfDo();
+
+            //默认城市
+            var index = $('#City').val();          // 获取当前选择的城市
+            $('#Area  :not([value="0"])').remove(); // 清空区县
+            if (index != '0') {                 // 排序选择第一个
+                $.each(city[index], function (index, item) {    // 遍历城市
+                    <?php if(!isset($data['address']['id_city'])): ?>
+                        $('#Area').append('<option value="' + index + '">' + item + '</option>');
+                    <?php else: ?>
+                        if(index==<?php echo e($data['address']['id_city']); ?>){
+                            $('#Area').append('<option selected="selected" value="' + index + '">' + item + '</option>');
+                        }else{
+                            $('#Area').append('<option value="' + index + '">' + item + '</option>');
+                        }
+                    <?php endif; ?>
+                });
+            }
+            $('#Street :not([value="0"])').remove();            // 顺便清空街道
+
+            //城市改变
+            $('#City').on('change', function () {   // 城市改变事件
+                var index = $(this).val();          // 获取当前选择的城市
+                $('#Area  :not([value="0"])').remove(); // 清空区县
+                if (index != '0') {                 // 排序选择第一个
+                    $.each(city[index], function (index, item) {    // 遍历城市
+                        $('#Area').append('<option value="' + index + '">' + item + '</option>');
+                    });
+                }
+                $('#Street :not([value="0"])').remove();            // 顺便清空街道
+            });
+
+            //默认街道
+            var index = $('#Area').val();                  // 获取当前选择的区县
+            $('#Street :not([value="0"])').remove();    // 清空街道
+            if (index != '0' && aa[index] != '' && aa[index] != undefined) {    // 筛选
+                $.each(aa[index], function (index, item) {                      // 遍历所有街道
+                    <?php if(!isset($data['address']['id_area'])): ?>
+                        $('#Street').append('<option value="' + index + '">' + item + '</option>');
+                    <?php else: ?>
+                        if(index==<?php echo e($data['address']['id_area']); ?>){
+                            $('#Street').append('<option selected="selected" value="' + index + '">' + item + '</option>');
+                        }else{
+                            $('#Street').append('<option value="' + index + '">' + item + '</option>');
+                        }
+                    <?php endif; ?>
+                });
+            } else if (city[$('#City').val()][index] != undefined) {            // 如果区县下没有街道, 让街道显示区县名称
+                $('#Street').append('<option value="-1">' + city[$('#City').val()][index] + '</option>');
+            }
+            $('#Area').on('change', function () {
+                var index = $(this).val();                  // 获取当前选择的区县
+                $('#Street :not([value="0"])').remove();    // 清空街道
+                if (index != '0' && aa[index] != '' && aa[index] != undefined) {    // 筛选
+                    $.each(aa[index], function (index, item) {                      // 遍历所有街道
+                        $('#Street').append('<option value="' + index + '">' + item + '</option>');
+                    });
+                } else if (city[$('#City').val()][index] != undefined) {            // 如果区县下没有街道, 让街道显示区县名称
+                    $('#Street').append('<option value="-1">' + city[$('#City').val()][index] + '</option>');
+                }
+            });
+            <?php endif; ?>
+            /**
+             *
+             */
+            function sub(){
+                var regtel = /^(130|131|132|133|134|135|136|137|138|139|150|152|153|154|155|156|157|158|159|180|181|182|183|184|185|186|187|188|189|170)\d{8}$/;
+                var regemail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+                //验证邮箱
+                if($("#email").val()==''){
+                    alert('请填写邮箱!!!');
+                    return false;
+                }else{
+                    var rege_mail = regemail.test($("#email").val());
+                    if(!rege_mail){
+                        alert('邮箱格式错误!!!');
+                        return false;
+                    }
+                }
+                //验证手机号
+                if($("#tel").val()==''){
+                    alert('请填写手机号!!!');
+                    return false;
+                }else{
+                    var reg_tel=regtel.test($("#tel").val());
+                    if(!reg_tel){
+                        alert('手机号格式错误!!!');
+                        return false;
+                    }
+                }
+                //验证姓名
+                if($("#name").val()==''){
+                    alert('请填写姓名!!!');
+                    return false;
+                }
+                //验证来源
+                if($("#source").val()==0){
+                    alert('请填选择来源!!!');
+                    return false;
+                }
+                //验证性别
+                if($("#sex").val()==0){
+                    alert('请填选择性别!!!');
+                    return false;
+                }
+                //验证教育程度
+                if($("#jiaoyu").val()==0){
+                    alert('请填选择教育程度!!!');
+                    return false;
+                }
+                //验证地址
+                if($("#City").val()==0){
+                    alert('请填选择省份!!!');
+                    return false;
+                }
+                if($("#Area").val()==0){
+                    alert('请填选择市!!!');
+                    return false;
+                }
+                if($("#Street").val()==0){
+                    alert('请填选择区县!!!');
+                    return false;
+                }
+                if($("#detailed").val()==''){
+                    alert('请填写详细地址!!!');
+                    return false;
+                }
+                //验证紧急联系人
+                if($("#jjlxr").val()==''){
+                    alert('请填写紧急联系人!!!');
+                    return false;
+                }
+                //验证与联系人关系
+                if($("#lxrgx").val()==0){
+                    alert('请填选择与联系人关系!!!');
+                    return false;
+                }
+                //验证紧急联系人电话
+                if($("#lxrtel").val()==''){
+                    alert('请填写紧急联系人电话!!!');
+                    return false;
+                }else{
+                    var reg_lxrtel=regtel.test($("#lxrtel").val());
+                    if(!reg_lxrtel){
+                        alert('紧急联系人电话格式错误!!!');
+                        return false;
+                    }
+                }
+            }
+        </script>
+
+    </div>
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

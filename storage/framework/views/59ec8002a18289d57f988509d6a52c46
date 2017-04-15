@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+    <link rel="shortcut icon" href="<?php echo e(URL::asset('/')); ?>img/favicon_1.ico">
+    <meta name="_token" content="<?php echo e(csrf_token()); ?>"/>
+    <title><?php $__env->startSection('title'); ?> 学籍管理系统 <?php echo $__env->yieldSection(); ?></title>
+    <?php $__env->startSection('meta_keywords'); ?>
+        <meta name="keywords" content="your, awesome, keywords, here"/>
+    <?php echo $__env->yieldSection(); ?> <?php $__env->startSection('meta_author'); ?>
+        <meta name="author" content="Jon Doe"/>
+    <?php echo $__env->yieldSection(); ?>
+
+    <?php echo $__env->make('student.public.styles', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <?php echo $__env->yieldContent('styles'); ?>
+</head>
+
+
+<body>
+
+<!-- Aside Start-->
+<?php echo $__env->make('student.public.aside', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<!-- Aside Ends-->
+
+<!--Main Content Start -->
+<section class="content">
+
+    <!-- Header -->
+    <?php echo $__env->make('student.public.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <!-- Header Ends -->
+
+
+    <!-- Page Content Start -->
+    <!-- ================== -->
+
+    <div class="wraper container-fluid">
+        <?php echo $__env->yieldContent('content'); ?>
+    </div>
+    <!-- Page Content Ends -->
+    <!-- ================== -->
+
+    <!-- Footer Start -->
+
+    <?php echo $__env->make('student.public.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <!-- Footer Ends -->
+
+</section>
+<!-- Main Content Ends -->
+
+<!-- js placed at the end of the document so the pages load faster -->
+<?php echo $__env->make('student.public.script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->yieldContent('script'); ?>
+
+
+</body>
+</html>

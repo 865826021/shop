@@ -1,0 +1,70 @@
+<?php $__env->startSection('content'); ?>
+    <div class="page-title">
+        <h3 class="title">证书管理</h3>
+    </div>
+    <div class="row">
+        <!-- Basic example -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">添加证书</h3></div>
+                <div class="panel-body">
+                    <form role="form" action="/certificate" method="post" onsubmit="return check()">
+                        <?php echo e(csrf_field()); ?>
+
+                        <div class="form-group">
+                            <label for="type">证书类型</label>
+                            <input type="text" name="type" class="form-control" id="type"
+                                   data-form-pw="1470125642327.0342" placeholder="请输入证书类型....">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">状态</label>
+                            <div class="radio-inline">
+                                <label class="cr-styled" for="status1">
+                                    <input type="radio" checked id="status1"
+                                           name="status" value="1">
+                                    <i class="fa"></i>
+                                    正常
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label class="cr-styled" for="status2">
+                                    <input type="radio" id="status2"
+                                           name="status" value="2">
+                                    <i class="fa"></i>
+                                    禁用
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-purple"
+                                data-form-sbm="1470125642327.0342">
+                            新增
+                        </button>
+                        <a href="/certificate" class="btn btn-purple"
+                           data-form-sbm="1470125642327.0342">
+                            返回
+                        </a>
+                    </form>
+                </div><!-- panel-body -->
+            </div> <!-- panel -->
+        </div> <!-- col-->
+    </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+    <script>
+        /**
+         * 表单检验
+         * @returns  {boolean}
+         */
+        function check() {
+            // 获取表单值
+            var type = $('#type').val();
+            if (type == '') {
+                swal('消息', '毕业证类型不能为空!', 'error');
+                return false;
+            }
+            return true;
+        }
+    </script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

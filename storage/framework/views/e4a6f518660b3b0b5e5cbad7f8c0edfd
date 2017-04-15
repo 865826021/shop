@@ -1,0 +1,40 @@
+<aside class="left-panel">
+
+    <!-- brand -->
+    <div class="logo">
+        <a href="index.html" class="logo-expanded">
+            <img src="/admin/Picture/single-logo.png" alt="logo">
+            <span class="nav-label">学籍管理</span>
+        </a>
+    </div>
+    <!-- / brand -->
+
+    <!-- Navbar Start -->
+    <nav class="navigation">
+        <ul class="list-unstyled">
+            <li class="has-submenu active"><a href="/"><i class="ion-home"></i> <span class="nav-label">后台首页</span></a>
+              <?php /*  <ul class="list-unstyled">
+                    <li class="active"><a href="index.html">Dashboard v1</a></li>
+                    <li><a href="dashboard2.html">Dashboard v2</a></li>
+                </ul>*/ ?>
+            </li>
+            <li class="has-submenu"><a href="#"><i class="ion-flask"></i> <span class="nav-label">班级管理</span></a>
+                <ul class="list-unstyled">
+                    <li><a href="/educlass/addpage">我要开班</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu"><a href="#"><i class="ion-compose"></i> <span class="nav-label">学籍管理</span></a>
+                <ul class="list-unstyled">
+                    <li><a href="/student/search-class">我的班级</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu"><a href="#"><i class="ion-compose"></i>兄弟会<span class="nav-label"></span></a>
+                <ul class="list-unstyled">
+                     <li><a href="/signup">学员报名</a></li>
+                     <li><a href="/signup/search">学员搜索</a></li>
+                </ul>
+             </li>
+        </ul>
+    </nav>
+
+</aside>

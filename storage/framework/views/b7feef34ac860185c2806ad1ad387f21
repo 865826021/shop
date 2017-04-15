@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>兄弟连IT教育认证查询</title>
+	<link rel="stylesheet" href="http://future.ydma.cn/home/Css/reset.css" />
+	<link rel="stylesheet" href="http://future.ydma.cn/home/Css/zs_search.css" />
+	<style>
+		.real_name{
+			font-size: 20px;
+
+		}
+		.certificate{
+			font-size: 20px;
+			float: right;
+			margin-right: 50px;
+		}
+		.qrcode{
+			width:150px;
+			height:150px;
+			margin:80px auto 0px auto;
+		}
+		.buttons{
+			margin:0 auto;
+			width:50%;
+			padding:7px 15px;
+		    background-color:#3c6db0;
+		    text-align:center;
+		    border-radius:5px;
+		    overflow:hidden;
+		    min-width:80px;
+		    border:none;
+			color:#FFF;
+			box-shadow:1px 1px 1px rgba(75,75,75,0.3);
+		}
+	</style>
+</head>
+<body>
+	<!-- 外部容器开始 -->
+	<div id="wrap">
+		<!-- logo区域开始 -->
+		<div class="logo">
+			<img src="<?php echo e(asset('/home/Images/logo.jpg')); ?>" alt="兄弟连">
+			<h1>兄弟连IT教育证书查询</h1>
+		</div>
+
+		<!-- 二维码 -->
+			<div class="qrcode">
+				<?php echo $qrcode; ?>
+
+
+			</div>
+		<a href="/">
+			<div class="buttons">返 回</div>
+		</a>
+	</div>
+
+	<!-- 外部容器结束 -->
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<?php $__env->startSection('content'); ?>
+    <div class="wraper container-fluid">
+
+        <div class="page-title">
+            <h3 class="title">学籍管理员管理</h3>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">学籍管理员列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>username</th>
+                                            <th>nickname</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach($userList as $user): ?>
+                                            <tr>
+                                                <td><?php echo e($user->id); ?></td>
+                                                <td><?php echo e($user->username); ?></td>
+                                                <td><?php echo e($user->nickname); ?></td>
+                                                <td><button onclick="window.location='/eduuser/<?php echo e($user->id); ?>/edit'" class="btn btn-primary btn-xs">修改</button> &nbsp; &nbsp;
+                                                    <button onclick="window.location='<?php echo e(url('/eduuser/del')); ?>/<?php echo e($user->id); ?>'" class="btn btn-danger btn-xs del">删除</button>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-xs-offset-4"><?php echo $pageView; ?></div>
+            </div>
+        </div> <!-- End row -->
+
+
+
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
