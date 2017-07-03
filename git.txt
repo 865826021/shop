@@ -1,0 +1,35 @@
+
+
+git status
+
+git branch
+
+git checkout -b marter_yuxiaoyang_yonghusousuo
+
+开始修改/添加网站,结束后进行下一步
+
+git branch
+
+git add .
+
+git commit -m "添加用户搜索功能"
+
+git branch
+
+git push origin marter_yuxiaoyang_yonghusousuo
+
+
+
+Git鼓励大量使用分支：
+
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>
+
+创建+切换分支：git checkout -b <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
