@@ -30,7 +30,7 @@ class ArticleController extends Controller
         $ArticleList = Article::getArticleList($skip,$number);
         $count = Article::getCount();
         $totalPage=ceil($count/$number);
-        $baseUrl=url('/article');
+        $baseUrl=url('/article/index');
         $pageView=$this->CustomPage->getSelfPageView($nowPage,$totalPage,$baseUrl,[]);
         return view('admin.article.index')->with('pageView',$pageView)->with('ArticleList',$ArticleList);
     }

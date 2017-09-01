@@ -29,7 +29,7 @@ class LinksController extends Controller
         $LinksList = Links::getLinksList($skip,$number);
         $count = Links::getCount();
         $totalPage=ceil($count/$number);
-        $baseUrl=url('/links');
+        $baseUrl=url('/links/index');
         $pageView=$this->CustomPage->getSelfPageView($nowPage,$totalPage,$baseUrl,[]);
         return view('admin.links.index')->with('pageView',$pageView)->with('LinksList',$LinksList);
     }

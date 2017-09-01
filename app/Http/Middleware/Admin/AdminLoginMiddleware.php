@@ -75,6 +75,9 @@ class AdminLoginMiddleware
         if($adminUserInfo && $data){
             $access = $_SERVER['REQUEST_URI'];
             //dd($access);
+			if(strpos($access, '?')){
+                $access = explode('?',$access)[0];
+            }
             $access_1 = explode('/',$access);
             //dd($access_1);
             foreach($access_1 as $k=>$v){
