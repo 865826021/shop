@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['domain' => 'admin.shop.com'], function () {
+Route::group(['domain' => 'mulanshouyao.cn'], function () {
     require __DIR__.'/admin_routes.php';
 });
 
