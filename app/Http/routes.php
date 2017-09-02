@@ -12,8 +12,9 @@
 */
 Route::group(['domain' => 'mulanshouyao.cn'], function () {
     require __DIR__.'/admin_routes.php';
-	Route::get('/appIndex', 'Home\AppIndexController@appIndex');
-	Route::get('/categoryIndex', 'Home\AppIndexController@categoryIndex');
+	Route::match(['get', 'post'],'/appIndex', 'Home\AppIndexController@appIndex');
+	Route::match(['get', 'post'],'/categoryIndex', 'Home\AppIndexController@categoryIndex');
+	Route::match(['get', 'post'],'/getProductByCid', 'Home\AppIndexController@getProductByCid');
 });
 
 Route::group(['domain' => 'www.shop.com'], function () {
