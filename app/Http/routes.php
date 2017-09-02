@@ -12,6 +12,7 @@
 */
 Route::group(['domain' => 'mulanshouyao.cn'], function () {
     require __DIR__.'/admin_routes.php';
+	Route::get('/appIndex', 'Home\AppIndexController@appIndex');
 });
 
 Route::group(['domain' => 'www.shop.com'], function () {
