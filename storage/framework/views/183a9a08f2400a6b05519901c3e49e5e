@@ -1,5 +1,4 @@
-@extends('admin.layouts.default')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <script type="text/javascript" src="/admin/Scripts/jquery-1.js"></script>
     <script type="text/javascript" src="/admin/Scripts/school.js"></script>
     <script type="text/javascript" src="/admin/Scripts/district.js"></script>
@@ -14,39 +13,39 @@
             <!-- Horizontal form -->
             <div class="col-md-10">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">产品添加</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">产品修改</h3></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" action="/product/store" method="post" role="form" enctype="multipart/form-data">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <form class="form-horizontal" action="/product/update" method="post" role="form" enctype="multipart/form-data">
+                            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 							
 							<div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">产品类别：</label>
                                 <div class="col-sm-6">
                                     <select class="form-control" id="cid" name="cid">
-                                        @foreach($node as $n)
-                                            <option value="{{ $n['cid'] }}">{{ $n['name'] }}</option>
-                                        @endforeach
+                                        <?php foreach($node as $n): ?>
+										    <?php if($n['cid'] == $article->cid): ?>{
+												<option value="<?php echo e($n['cid']); ?>" selected ><?php echo e($n['name']); ?></option>
+											}<?php else: ?>{
+												<option value="<?php echo e($n['cid']); ?>" ><?php echo e($n['name']); ?></option>
+											}
+											<?php endif; ?>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
 							
+                            <input type="hidden" name="id" value="<?php echo e($article->id); ?>">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">产品标题：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="产品标题" value="{{old('title')}}">
-                                    @if ($errors->has('title'))
-                                        <p style="color: red">{{$errors->first('title')}}</p>
-                                    @endif
+                                    <input type="text" class="form-control" id="title" name="title" value="<?php echo e($article->title); ?>">
                                 </div>
                             </div>
 							
 							<div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">产品价格：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="price" name="price" placeholder="产品价格" value="{{old('price')}}">
-                                    @if ($errors->has('price'))
-                                        <p style="color: red">{{$errors->first('price')}}</p>
-                                    @endif
+                                    <input type="text" class="form-control" id="price" name="price" value="<?php echo e($article->price); ?>">
                                 </div>
                             </div>
                             
@@ -60,17 +59,14 @@
                             <div class="form-group">
                                 <label for="inputPassword4" class="col-sm-3 control-label">描述：</label>
                                 <div class="col-sm-9">
-                                    <textarea type="text" class="form-control" id="description" name="description" placeholder="描述" value="{{old('description')}}"></textarea>
-                                    @if ($errors->has('description'))
-                                        <p style="color: red">{{$errors->first('description')}}</p>
-                                    @endif
+                                    <textarea type="text" class="form-control" id="description" name="description"><?php echo e($article->description); ?></textarea>
                                 </div>
                             </div>
 
 
                             <div class="form-group m-b-0">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="submit" class="btn btn-info">添加</button>
+                                    <button type="submit" class="btn btn-info">修改</button>
                                 </div>
                             </div>
                         </form>
@@ -81,6 +77,8 @@
         </div> <!-- End row -->
 
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
+
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,5 +1,5 @@
-@extends('admin.layouts.default')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="wraper container-fluid">
         <div class="page-title">
             <h3 class="title">产品管理</h3>
@@ -30,32 +30,33 @@
                                         </thead>
                                         <tbody>
 
-                                        @foreach($ArticleList as $v)
+                                        <?php foreach($ArticleList as $v): ?>
                                         <tr>
-                                            <td>{{$v->id}}</td>
-											<td>{{$v->title}}</td>
-                                            <td><img width="100px" height="50px" src="/{{$v->thumb}}"></td>
+                                            <td><?php echo e($v->id); ?></td>
+											<td><?php echo e($v->title); ?></td>
+                                            <td><img width="100px" height="50px" src="/<?php echo e($v->thumb); ?>"></td>
                                             <td>
-											@foreach($node as $n)
-										        @if($n['cid'] == $v->cid)
-												    {{ $n['name'] }}
-											    @endif
-                                            @endforeach
+											<?php foreach($node as $n): ?>
+										        <?php if($n['cid'] == $v->cid): ?>
+												    <?php echo e($n['name']); ?>
+
+											    <?php endif; ?>
+                                            <?php endforeach; ?>
 											</td>
-											<td>{{$v->price}}</td>
-                                            <td>{{ date("Y-m-d h:i:s", $v->add_time) }}</td>
-                                            <td><button onclick="window.location='/product/edit/{{ $v->id }}'" class="btn btn-primary btn-xs">修改</button> &nbsp; &nbsp;
-                                                <button onclick="window.location='{{url('/product/destroy')}}/{{$v->id}}'" class="btn btn-danger btn-xs del">删除</button>
+											<td><?php echo e($v->price); ?></td>
+                                            <td><?php echo e(date("Y-m-d h:i:s", $v->add_time)); ?></td>
+                                            <td><button onclick="window.location='/product/edit/<?php echo e($v->id); ?>'" class="btn btn-primary btn-xs">修改</button> &nbsp; &nbsp;
+                                                <button onclick="window.location='<?php echo e(url('/product/destroy')); ?>/<?php echo e($v->id); ?>'" class="btn btn-danger btn-xs del">删除</button>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        <?php endforeach; ?>
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-4 col-xs-offset-4">{!! $pageView !!}</div>
+                        <div class="col-xs-4 col-xs-offset-4"><?php echo $pageView; ?></div>
                     </div>
                 </div>
             </div>
@@ -64,4 +65,5 @@
 
 
     </div>
-    @endsection
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

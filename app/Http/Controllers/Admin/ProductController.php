@@ -58,12 +58,14 @@ class ProductController extends Controller
         $input = \Input::except('_token');
         $this->validate($request , [
             'title'=>'required|unique:product',
+			'price'=>'required',
             'thumb'=>'required',
             'description'=>'required'
         ],
             [
                 'title.required'=>'产品标题必须填写!',
                 'title.unique'=>'产品标题已存在!',
+				'price.required'=>'产品价格必须填写!',
                 'thumb.required'=>'产品图片必须上传!',
                 'description.required'=>'产品描述必须填写!'
             ]
@@ -90,6 +92,7 @@ class ProductController extends Controller
         //echo $filepath;
 		$data['cid'] = $input['cid'];
         $data['title'] = $input['title'];
+		$data['price'] = $input['price'];
         $data['thumb'] = $filepath;
         $data['view'] = 0;
         $data['description'] = $input['description'];
@@ -143,6 +146,7 @@ class ProductController extends Controller
         $id = $request['id'];
 		$data['cid'] = $request['cid'];
         $data['title'] = $request['title'];
+		$data['price'] = $request['price'];
         $data['description'] = $request['description'];
         $data['add_time'] = time();
         if($request['thumb']){

@@ -37,9 +37,16 @@
 							
                             <input type="hidden" name="id" value="{{ $article->id }}">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">文章标题：</label>
+                                <label for="inputEmail3" class="col-sm-3 control-label">产品标题：</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="title" name="title" value="{{ $article->title }}">
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">产品价格：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="price" name="price" value="{{ $article->price }}">
                                 </div>
                             </div>
                             
