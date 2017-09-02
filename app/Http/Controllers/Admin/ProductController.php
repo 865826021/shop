@@ -76,8 +76,8 @@ class ProductController extends Controller
         $sizes = $file->getSize();
         //dd(($sizes/1024)."kb");
         $size = $sizes/1024;
-        if($size > 2048){
-            return view("404")->with('info','上传的图片超过2M')->with('url','/product/create');
+        if($size > 500){
+            return view("404")->with('info','上传的图片超过500kb')->with('url','/product/create');
         }
         $allowed_extensions = ["png", "PNG" , "jpg" , "JPG" , "jpeg", "JPEG" , "gif" , "GIF"];
         if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
@@ -155,8 +155,8 @@ class ProductController extends Controller
             $sizes = $file->getSize();
             //dd(($sizes/1024)."kb");
             $size = $sizes/1024;
-            if($size > 2048){
-                return view("404")->with('info','上传的图片超过2M')->with('url','/product/index');
+            if($size > 500){
+                return view("404")->with('info','上传的图片超过500kb')->with('url','/product/index');
             }
             $allowed_extensions = ["png", "PNG" , "jpg" , "JPG" , "jpeg", "JPEG" , "gif" , "GIF"];
             if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
