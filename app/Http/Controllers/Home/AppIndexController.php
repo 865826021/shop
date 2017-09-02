@@ -18,7 +18,7 @@ class AppIndexController extends Controller
 
     public function appIndex(Request $request)
     {
-		$datas = Product::limit(10)->get()->toArray();
+		$datas = Product::where('status','=',0)->limit(10)->get()->toArray();
 		//dd($datas);
         return ['datas' => $datas];
     }
