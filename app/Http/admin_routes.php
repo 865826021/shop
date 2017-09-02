@@ -53,7 +53,21 @@ Route::group(['middleware' => 'AdminLoginMiddleware'], function () {
     Route::get('/addUser', 'Admin\RbacController@addUser');
     Route::post('/addUserStore', 'Admin\RbacController@addUserStore');
 
-
+    //类别管理
+    Route::get('/category/index', 'Admin\CategoryController@index');
+    Route::get('/category/edit/{art_id}', 'Admin\CategoryController@edit');
+    Route::get('/category/create', 'Admin\CategoryController@create');
+    Route::post('/category/store', 'Admin\CategoryController@store');
+    Route::post('/category/update', 'Admin\CategoryController@update');
+    Route::get('/category/destroy/{art_id}', 'Admin\CategoryController@destroy');
+	
+	//产品管理
+    Route::get('/product/index', 'Admin\ProductController@index');
+    Route::get('/product/edit/{art_id}', 'Admin\ProductController@edit');
+    Route::get('/product/create', 'Admin\ProductController@create');
+    Route::post('/product/store', 'Admin\ProductController@store');
+    Route::post('/product/update', 'Admin\ProductController@update');
+    Route::get('/product/destroy/{art_id}', 'Admin\ProductController@destroy');
 
 });
 

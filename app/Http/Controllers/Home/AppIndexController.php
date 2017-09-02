@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Home\Article;
+use App\Home\Product;
 
 class AppIndexController extends Controller
 {
@@ -18,7 +18,7 @@ class AppIndexController extends Controller
 
     public function appIndex(Request $request)
     {
-		$datas = Article::limit(10)->get()->toArray();
+		$datas = Product::limit(10)->get()->toArray();
 		//dd($datas);
         return ['datas' => $datas];
     }
