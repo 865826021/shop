@@ -14,6 +14,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         'appIndex',
 		'categoryIndex',
-		'getProductByCid'
+		'getProductByCid',
+		'newGetProductByCid'
     ];
 }
