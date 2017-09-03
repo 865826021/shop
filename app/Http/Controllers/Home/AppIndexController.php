@@ -44,6 +44,19 @@ class AppIndexController extends Controller
 			return ['datas' => $datas];
 		}
     }
+	
+	public function newGetProductByCid(Request $request)
+    {
+		$cid = $request->input("cid");
+		$page = $request->input("page");
+		$limit = $request->input("limit");
+		$datas = Product::where('status','=',0)->where('cid','=',$cid)->skip($page*$limit)->take($limit)->get()->toArray();
+		$total = Product::where('status','=',0)->where('cid','=',$cid)->count();
+		//dd($datas);
+		if($datas){
+			return ['datas' => $datas,'total' =>$total ];
+		}
+    }
 
     
 }
