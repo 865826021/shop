@@ -38,10 +38,14 @@ class AppIndexController extends Controller
 	public function getProductByCid(Request $request)
     {
 		$cid = $request->input("cid");
-		$datas = Product::where('status','=',0)->where('cid','=',$cid)->limit(8)->get()->toArray();
-		//dd($datas);
-		if($datas){
-			return ['datas' => $datas];
+		if(isset($cid)){
+			$datas = Product::where('status','=',0)->where('cid','=',$cid)->limit(8)->get()->toArray();
+		    //dd($datas);
+		    if($datas){
+			    return ['datas' => $datas];
+		    }
+		}else{
+			return ['datas' => null ];
 		}
     }
 	
@@ -50,11 +54,16 @@ class AppIndexController extends Controller
 		$cid = $request->input("cid");
 		$page = $request->input("page");
 		$limit = $request->input("limit");
-		$datas = Product::where('status','=',0)->where('cid','=',$cid)->skip($page*$limit)->take($limit)->get()->toArray();
-		$total = Product::where('status','=',0)->where('cid','=',$cid)->get()->toArray();
-		//dd($datas);
-		if($datas){
-			return ['datas' => $datas,'total' =>count($total) ];
+		return ['cid' => $cid,'page' => $page,'limit' => $limit ];
+		if(isset($cid) && isset($page) && isset($limit)){
+			$datas = Product::where('status','=',0)->where('cid','=',$cid)->skip($page*$limit)->take($limit)->get()->toArray();
+		    $total = Product::where('status','=',0)->where('cid','=',$cid)->get()->toArray();
+		    //dd($datas);
+		    if($datas){
+			    return ['datas' => $datas,'total' =>count($total) ];
+		    }
+		}else{
+			return ['datas' => null ];
 		}
     }
 
