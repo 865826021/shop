@@ -54,7 +54,7 @@ class AppIndexController extends Controller
 		$cid = $request->input("cid");
 		$page = $request->input("page");
 		$limit = $request->input("limit");
-		return ['cid' => $cid,'page' => $page,'limit' => $limit ];
+		//return ['cid' => $cid,'page' => $page,'limit' => $limit ];
 		if(isset($cid) && isset($page) && isset($limit)){
 			$datas = Product::where('status','=',0)->where('cid','=',$cid)->skip($page*$limit)->take($limit)->get()->toArray();
 		    $total = Product::where('status','=',0)->where('cid','=',$cid)->get()->toArray();
