@@ -21,22 +21,29 @@ class AppIndexController extends Controller
     {
 		$datas = Product::where('status','=',0)->limit(8)->get()->toArray();
 		//dd($datas);
-        return ['datas' => $datas];
+		if($datas){
+			return ['datas' => $datas];
+		}
     }
 	
 	public function categoryIndex(Request $request)
     {
 		$datas = Category::where('status','=',0)->limit(8)->get()->toArray();
 		//dd($datas);
-        return ['datas' => $datas];
+		if($datas){
+			return ['datas' => $datas];
+		}
     }
 	
 	public function getProductByCid(Request $request)
     {
 		$cid = $request->input("cid");
+		return ['datas' => $cid];
 		$datas = Product::where('status','=',0)->where('cid','=',$cid)->limit(8)->get()->toArray();
 		//dd($datas);
-        return ['datas' => $datas];
+		if($datas){
+			return ['datas' => $datas];
+		}
     }
 
     
