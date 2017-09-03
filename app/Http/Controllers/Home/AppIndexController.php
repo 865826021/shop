@@ -51,10 +51,10 @@ class AppIndexController extends Controller
 		$page = $request->input("page");
 		$limit = $request->input("limit");
 		$datas = Product::where('status','=',0)->where('cid','=',$cid)->skip($page*$limit)->take($limit)->get()->toArray();
-		$total = Product::where('status','=',0)->where('cid','=',$cid)->count();
+		$total = Product::where('status','=',0)->where('cid','=',$cid)->get()->toArray();
 		//dd($datas);
 		if($datas){
-			return ['datas' => $datas,'total' =>$total ];
+			return ['datas' => $datas,'total' =>count($total) ];
 		}
     }
 
