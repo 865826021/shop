@@ -38,7 +38,6 @@ class AppIndexController extends Controller
 	public function getProductByCid(Request $request)
     {
 		$cid = $request->input("cid");
-		return ['datas' => $cid];
 		$datas = Product::where('status','=',0)->where('cid','=',$cid)->limit(8)->get()->toArray();
 		//dd($datas);
 		if($datas){
