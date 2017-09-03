@@ -15,6 +15,7 @@ Route::group(['domain' => 'mulanshouyao.cn'], function () {
 	Route::match(['get', 'post'],'/appIndex', 'Home\AppIndexController@appIndex');
 	Route::match(['get', 'post'],'/categoryIndex', 'Home\AppIndexController@categoryIndex');
 	Route::match(['get', 'post'],'/getProductByCid', 'Home\AppIndexController@getProductByCid');
+	Route::match(['get', 'post'],'/newGetProductByCid', 'Home\AppIndexController@newGetProductByCid');
 });
 
 Route::group(['domain' => 'www.shop.com'], function () {
